@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import useSWR from "swr";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
