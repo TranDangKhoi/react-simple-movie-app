@@ -1,7 +1,9 @@
 import "./App.css";
-import { NavLink } from "react-router-dom";
 import "swiper/css";
-import MovieList from "./movie/MovieList";
+import "swiper/css/navigation";
+import "swiper/css/bundle";
+import Banner from "./components/banner/Banner";
+import MovieList from "./components/movie/MovieList";
 
 function App() {
   return (
@@ -10,33 +12,7 @@ function App() {
         <span className="text-primary">Home</span>
         <span>Movies</span>
       </header>
-      <section className="banner h-[500px] page-container mb-20">
-        <div className="relative w-full h-full rounded-lg">
-          <div className="absolute inset-0 rounded-lg overlay bg-gradient-to-t from-black to-transparent"></div>
-          <img
-            src="http://genk.mediacdn.vn/2019/8/20/1-15662898065871774855253.jpg"
-            alt=""
-            className="object-cover w-full h-full rounded-lg"
-          />
-          <div className="absolute w-full text-white left-5 bottom-5">
-            <h2 className="mb-5 text-3xl font-bold">Avengers: Endgame</h2>
-            <div className="flex items-center mb-8 gap-x-3">
-              <span className="px-4 py-2 border border-white rounded-md">
-                Action
-              </span>
-              <span className="px-4 py-2 border border-white rounded-md">
-                Adventure
-              </span>
-              <span className="px-4 py-2 border border-white rounded-md">
-                Comedy
-              </span>
-            </div>
-            <button className="px-6 py-3 font-medium text-white rounded-lg bg-primary">
-              Watch Now
-            </button>
-          </div>
-        </div>
-      </section>
+      <Banner></Banner>
       <section className="pb-10 movies-layout page-container">
         <h2 className="mb-5 text-3xl font-bold text-white capitalize">
           Now playing
