@@ -23,9 +23,12 @@ function App() {
               </>
             }
           ></Route>
-          <Route path="/movies" element={<MoviePage></MoviePage>}></Route>
           <Route
-            path="/movies/:movieId"
+            path="react-simple-movie-app/movies"
+            element={<MoviePage></MoviePage>}
+          ></Route>
+          <Route
+            path="react-simple-movie-app/movies/:movieId"
             element={<MovieDetailsPage></MovieDetailsPage>}
           ></Route>
         </Route>
