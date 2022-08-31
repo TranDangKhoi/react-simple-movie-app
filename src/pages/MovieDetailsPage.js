@@ -12,7 +12,6 @@ const MovieDetailsPage = () => {
   );
   if (!data) return null;
   const { overview, backdrop_path, poster_path, title, genres } = data;
-  console.log("log ~ MovieDetailsPage ~ data", data);
   return (
     <>
       <div
@@ -47,20 +46,22 @@ const MovieDetailsPage = () => {
         {overview}
       </p>
       <MovieCredits></MovieCredits>
+      <MovieVideos></MovieVideos>
     </>
   );
 };
 
 function MovieCredits() {
   const { movieId } = useParams();
-  const { data, error } = useSWR(
+  const { data } = useSWR(
     `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}`,
     fetcher
   );
   //https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key=3ce49afbabd14f11e4b7097cf42c2ab9
-  const { cast } = data;
+  // console.log("log ~ MovieCredits ~ data", data);
   if (!data) return null;
-
+  const { cast } = data;
+  if (!cast || cast.length < 0) return;
   return (
     <div className="text-white">
       <h1 className="text-center text-white font-medium text-[36px] mb-10">
@@ -69,7 +70,7 @@ function MovieCredits() {
       <div className="grid grid-cols-4 gap-5 px-10">
         {cast.length > 0 &&
           cast.slice(0, 8).map((item) => (
-            <div className="cast-item">
+            <div key={item.id} className="cast-item">
               <img
                 src={`https:image.tmdb.org/t/p/original${item.profile_path}`}
                 alt=""
@@ -83,4 +84,37 @@ function MovieCredits() {
   );
 }
 
+function MovieVideos() {
+  const { movieId } = useParams();
+  const { data } = useSWR(
+    `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}`,
+    fetcher
+  );
+  if (!data || !data.results) return null;
+  const { results } = data;
+  if (!results || results.length < 0) return null;
+  return (
+    <>
+      <h1 className="text-center text-white font-medium text-[36px] mb-10">
+        Teaser & Trailers
+      </h1>
+      <div className="grid grid-cols-2 text-white place-items-center ">
+        {results.slice(0, 4).map((item) => (
+          <div key={item.id} className="mb-10">
+            <iframe
+              width="657"
+              height="370"
+              src={`https://www.youtube.com/embed/${item.key}`}
+              title="DC League of Super-Pets | Meet The Pets - Chip"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+        ))}
+      </div>
+    </>
+  );
+}
+// <iframe width="657" height="370" src="https://www.youtube.com/embed/tFHMkB6dZxI" title="DC League of Super-Pets | Meet The Pets - Chip" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 export default MovieDetailsPage;
