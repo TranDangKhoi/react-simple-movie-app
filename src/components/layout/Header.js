@@ -11,7 +11,7 @@ const Header = () => {
         Home
       </NavLink>
       <NavLink
-        to="/react-simple-movie-app/movies"
+        to="/movies"
         className={({ isActive }) => (isActive ? "text-primary" : "")}
       >
         Movies
