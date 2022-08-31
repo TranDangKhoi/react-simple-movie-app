@@ -1,7 +1,6 @@
 import React from "react";
 import useSWR from "swr";
 import MovieCard from "../components/movie/MovieCard";
-import MovieList from "../components/movie/MovieList";
 import { fetcher } from "../config";
 
 const MoviePage = ({ type = "popular" }) => {
