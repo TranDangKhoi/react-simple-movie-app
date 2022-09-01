@@ -15,7 +15,7 @@ function App() {
       <Routes>
         <Route element={<Main></Main>}>
           <Route
-            path="/react-simple-movie-app"
+            path="/"
             element={
               <>
                 <Banner></Banner>

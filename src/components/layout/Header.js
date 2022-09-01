@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <header className="flex items-center justify-center py-10 mb-5 text-white header gap-x-5">
       <NavLink
-        to="/react-simple-movie-app"
+        to="/"
         className={({ isActive }) => (isActive ? "text-primary" : "")}
       >
         Home
