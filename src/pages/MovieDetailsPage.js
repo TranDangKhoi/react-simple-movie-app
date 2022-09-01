@@ -76,7 +76,7 @@ function MovieCredits() {
           cast.slice(0, 8).map((item) => (
             <div key={item.id} className="cast-item">
               <img
-                src={`https:image.tmdb.org/t/p/original${item.profile_path}`}
+                src={`https://image.tmdb.org/t/p/original${item.profile_path}`}
                 alt=""
                 className="w-full h-[350px] object-cover rounded-lg mb-5"
               />

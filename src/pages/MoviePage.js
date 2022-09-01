@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import useSWR from "swr";
 import MovieCard from "../components/movie/MovieCard";
 import { fetcher } from "../config";
-
+// https://api.themoviedb.org/3/search/movie?api_key=<<api_key>>&language=en-US&query=spiderman&page=1&include_adult=false
 const MoviePage = ({ type = "popular" }) => {
+  const [query, setQuery] = useState("");
+  const handleQueryChange = (e) => {
+    setQuery(e.target.value);
+  };
   const { data } = useSWR(
-    `https://api.themoviedb.org/3/movie/${type}?api_key=3ce49afbabd14f11e4b7097cf42c2ab9&language=en-US&page=1}`,
+    `https://api.themoviedb.org/3/movie/${type}?api_key=3ce49afbabd14f11e4b7097cf42c2ab9&language=en-US&page=1`,
     fetcher
   );
   const movies = data?.results || [];
@@ -17,6 +21,7 @@ const MoviePage = ({ type = "popular" }) => {
             type="text"
             className="w-full p-4 bg-slate-800 outline-none text-white font-medium text-[20px]"
             placeholder="Search your movies..."
+            onChange={() => handleQueryChange}
           />
         </div>
         <button className="p-4 border-none rounded-lg bg-primary">
