@@ -1,6 +1,9 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import { FreeMode, Navigation } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 import useSWR from "swr";
+import MovieCard from "../components/movie/MovieCard";
 import { apiKey, fetcher } from "../config";
 // 3ce49afbabd14f11e4b7097cf42c2ab9
 // https://api.themoviedb.org/3/movie/{movie_id}?api_key=3ce49afbabd14f11e4b7097cf42c2ab9&language=en-US
@@ -47,6 +50,7 @@ const MovieDetailsPage = () => {
       </p>
       <MovieCredits></MovieCredits>
       <MovieVideos></MovieVideos>
+      <MoviesSimilar></MoviesSimilar>
     </>
   );
 };
@@ -98,14 +102,14 @@ function MovieVideos() {
       <h1 className="text-center text-white font-medium text-[36px] mb-10">
         Teaser & Trailers
       </h1>
-      <div className="grid grid-cols-2 text-white place-items-center ">
-        {results.slice(0, 4).map((item) => (
+      <div className="grid items-center grid-cols-3 gap-10 text-white justify-items-center">
+        {results.slice(0, 6).map((item) => (
           <div key={item.id} className="mb-10">
             <iframe
-              width="657"
+              width="557"
               height="370"
               src={`https://www.youtube.com/embed/${item.key}`}
-              title="DC League of Super-Pets | Meet The Pets - Chip"
+              title={item.name}
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
@@ -114,6 +118,40 @@ function MovieVideos() {
         ))}
       </div>
     </>
+  );
+}
+
+function MoviesSimilar() {
+  const { movieId } = useParams();
+  const { data } = useSWR(
+    `https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${apiKey}`,
+    fetcher
+  );
+  console.log("log ~ MoviesSimilar ~ data", data);
+  if (!data || !data.results) return null;
+  const { results } = data;
+  if (!results || results.length < 0) return null;
+  return (
+    <div className="py-10 mx-auto text-center text-white">
+      <h2 className="mb-10 text-3xl font-medium">Similar Movies</h2>
+      <div className="movie-list">
+        <Swiper
+          freeMode={true}
+          navigation={true}
+          grabCursor={true}
+          slidesPerView={"auto"}
+          spaceBetween={40}
+          modules={[FreeMode, Navigation]}
+        >
+          {results.length > 0 &&
+            results.map((item) => (
+              <SwiperSlide key={item.id}>
+                <MovieCard item={item}></MovieCard>
+              </SwiperSlide>
+            ))}
+        </Swiper>
+      </div>
+    </div>
   );
 }
 // <iframe width="657" height="370" src="https://www.youtube.com/embed/tFHMkB6dZxI" title="DC League of Super-Pets | Meet The Pets - Chip" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
