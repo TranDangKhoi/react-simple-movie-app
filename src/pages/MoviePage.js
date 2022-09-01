@@ -25,7 +25,8 @@ const MoviePage = ({ type = "popular" }) => {
     }
   }, [debounceValue]);
   console.log(debounceValue);
-  const { data } = useSWR(url, fetcher);
+  const { data, error } = useSWR(url, fetcher);
+  const loading = !data && !error;
   const movies = data?.results || [];
   return (
     <div className="py-10 page-container">
@@ -55,6 +56,9 @@ const MoviePage = ({ type = "popular" }) => {
           </svg>
         </button>
       </div>
+      {loading && (
+        <div className="mx-auto mt-20 rounded-full border-[5px] border-t-[5px] w-14 h-14 border-primary animate-spin border-t-transparent"></div>
+      )}
       <div className="grid grid-cols-4 gap-10">
         {movies.length > 0 &&
           movies.map((item) => (
