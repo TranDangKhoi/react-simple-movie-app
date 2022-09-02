@@ -5,7 +5,7 @@ import MovieCard from "../components/movie/MovieCard";
 import { fetcher } from "../config";
 import useDebounce from "../hooks/useDebounce";
 // https://api.themoviedb.org/3/search/movie?api_key=<<api_key>>&language=en-US&query=spiderman&page=1&include_adult=false
-const itemsPerPage = 16;
+const itemsPerPage = 20;
 
 const MoviePage = ({ type = "popular" }) => {
   const [pageCount, setPageCount] = useState(0);
@@ -38,15 +38,15 @@ const MoviePage = ({ type = "popular" }) => {
   const loading = !data && !error;
   const movies = data?.results || [];
   useEffect(() => {
-    if (!data || !data.total_pages) return;
+    if (!data || !data.total_results) return;
 
     // Fetch items from another resources.
-    setPageCount(Math.ceil(data.total_pages / itemsPerPage));
+    setPageCount(Math.ceil(data.total_results / itemsPerPage));
   }, [data, itemOffset]);
 
   // Invoke when user click to request another page.
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % data.total_pages;
+    const newOffset = (event.selected * itemsPerPage) % data.total_results;
     setItemOffset(newOffset);
     setNextPage(event.selected + 1);
   };
@@ -91,11 +91,11 @@ const MoviePage = ({ type = "popular" }) => {
       <div className="mt-10">
         <ReactPaginate
           breakLabel="..."
-          nextLabel="next >"
+          nextLabel="Trang sau >"
           onPageChange={handlePageClick}
-          pageRangeDisplayed={5}
+          pageRangeDisplayed={6}
           pageCount={pageCount}
-          previousLabel="< previous"
+          previousLabel="< Trang trước"
           renderOnZeroPageCount={null}
           className="pagination"
         />
