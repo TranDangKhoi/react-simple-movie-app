@@ -35,6 +35,7 @@ const MoviePage = ({ type = "popular" }) => {
   }, [debounceValue, nextPage]);
   console.log(debounceValue);
   const { data, error } = useSWR(url, fetcher);
+  console.log("log ~ MoviePage ~ data", data);
   const loading = !data && !error;
   const movies = data?.results || [];
   useEffect(() => {
