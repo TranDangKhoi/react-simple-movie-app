@@ -4,16 +4,11 @@ import { Navigation, FreeMode } from "swiper";
 
 import useSWR from "swr";
 import MovieCard from "./MovieCard";
-import { fetcher } from "../../config";
+import { fetcher, tmdbAPI } from "../../config";
 
-const MovieList = ({ type = "now_playing" }, { page = true }) => {
+const MovieList = ({ type = "now_playing" }) => {
   // const [movies, setMovies] = useState([]);
-  const { data } = useSWR(
-    `https://api.themoviedb.org/3/movie/${type}?api_key=3ce49afbabd14f11e4b7097cf42c2ab9&language=en-US&${
-      page ? "page=1" : ""
-    }`,
-    fetcher
-  );
+  const { data } = useSWR(tmdbAPI.getMovieList(type), fetcher);
   const movies = data?.results || [];
   // useEffect(() => {
   //   if (data && data.results) setMovies(data.results);

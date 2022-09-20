@@ -4,15 +4,12 @@ import { FreeMode, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import useSWR from "swr";
 import MovieCard from "../components/movie/MovieCard";
-import { apiKey, fetcher } from "../config";
+import { apiKey, fetcher, tmdbAPI } from "../config";
 // 3ce49afbabd14f11e4b7097cf42c2ab9
 // https://api.themoviedb.org/3/movie/{movie_id}?api_key=3ce49afbabd14f11e4b7097cf42c2ab9&language=en-US
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
-  const { data, error } = useSWR(
-    `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`,
-    fetcher
-  );
+  const { data, error } = useSWR(tmdbAPI.getMovieDetails(movieId), fetcher);
   if (!data) return null;
   const { overview, backdrop_path, poster_path, title, genres } = data;
   return (
@@ -20,14 +17,14 @@ const MovieDetailsPage = () => {
       <div
         className="relative w-full h-screen mb-10 text-white bg-no-repeat bg-cover "
         style={{
-          backgroundImage: `url(https://image.tmdb.org/t/p/original${backdrop_path})`,
+          backgroundImage: `url(${tmdbAPI.imageOriginal(backdrop_path)})`,
         }}
       >
         <div className="absolute inset-0 h-full overlay bg-gradient-to-t from-black to-transparent"></div>
       </div>
       <div className="w-full h-[400px] max-w-[800px] mx-auto -mt-[200px] z-10 relative">
         <img
-          src={`https://image.tmdb.org/t/p/original${poster_path}`}
+          src={tmdbAPI.imageOriginal(poster_path)}
           alt=""
           className="object-cover w-full h-full mx-auto rounded-xl"
         />
@@ -57,10 +54,7 @@ const MovieDetailsPage = () => {
 
 function MovieCredits() {
   const { movieId } = useParams();
-  const { data } = useSWR(
-    `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}`,
-    fetcher
-  );
+  const { data } = useSWR(tmdbAPI.getMovieMeta("credits", movieId), fetcher);
   //https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key=3ce49afbabd14f11e4b7097cf42c2ab9
   // console.log("log ~ MovieCredits ~ data", data);
   if (!data) return null;
@@ -76,7 +70,7 @@ function MovieCredits() {
           cast.slice(0, 8).map((item) => (
             <div key={item.id} className="cast-item">
               <img
-                src={`https://image.tmdb.org/t/p/original${item.profile_path}`}
+                src={tmdbAPI.imageOriginal(item.profile_path)}
                 alt=""
                 className="w-full h-[350px] object-cover rounded-lg mb-5"
               />
@@ -90,10 +84,7 @@ function MovieCredits() {
 
 function MovieVideos() {
   const { movieId } = useParams();
-  const { data } = useSWR(
-    `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}`,
-    fetcher
-  );
+  const { data } = useSWR(tmdbAPI.getMovieMeta("videos", movieId), fetcher);
   if (!data || !data.results) return null;
   const { results } = data;
   if (!results || results.length < 0) return null;
@@ -123,11 +114,7 @@ function MovieVideos() {
 
 function MoviesSimilar() {
   const { movieId } = useParams();
-  const { data } = useSWR(
-    `https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${apiKey}`,
-    fetcher
-  );
-  console.log("log ~ MoviesSimilar ~ data", data);
+  const { data } = useSWR(tmdbAPI.getMovieMeta("similar", movieId), fetcher);
   if (!data || !data.results) return null;
   const { results } = data;
   if (!results || results.length < 0) return null;
@@ -154,5 +141,4 @@ function MoviesSimilar() {
     </div>
   );
 }
-// <iframe width="657" height="370" src="https://www.youtube.com/embed/tFHMkB6dZxI" title="DC League of Super-Pets | Meet The Pets - Chip" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 export default MovieDetailsPage;

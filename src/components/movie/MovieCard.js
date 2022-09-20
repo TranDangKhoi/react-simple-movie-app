@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { tmdbAPI } from "../../config";
 import Button from "../button/Button";
 
 const MovieCard = ({ item }) => {
@@ -8,7 +9,7 @@ const MovieCard = ({ item }) => {
   return (
     <div className="flex flex-col h-full p-3 text-white rounded-lg select-none movie-card bg-slate-800">
       <img
-        src={`https://image.tmdb.org/t/p/original${poster_path}`}
+        src={tmdbAPI.imageOriginal(item.poster_path)}
         alt=""
         className="w-full h-[250px] object-cover rounded-lg mb-5"
       />
@@ -18,7 +19,9 @@ const MovieCard = ({ item }) => {
           <span>{new Date(release_date).getFullYear()}</span>
           <span>{vote_average}</span>
         </div>
-        <Button onClick={() => navigate(`/movie/${id}`)}>Watch now</Button>
+        <Button bgColor="secondary" onClick={() => navigate(`/movie/${id}`)}>
+          Watch now
+        </Button>
       </div>
     </div>
   );
