@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import useSWR from "swr";
 import ReactPaginate from "react-paginate";
 import MovieCard from "../components/movie/MovieCard";
-import { fetcher } from "../config";
+import { fetcher, tmdbAPI } from "../config";
 import useDebounce from "../hooks/useDebounce";
 // https://api.themoviedb.org/3/search/movie?api_key=<<api_key>>&language=en-US&query=spiderman&page=1&include_adult=false
 const itemsPerPage = 20;
 
-const MoviePage = ({ type = "popular" }) => {
+const MoviePage = () => {
   const [pageCount, setPageCount] = useState(0);
   // Here we use item offsets; we could also use page offsets
   // following the API or data you're working with.
@@ -15,27 +15,19 @@ const MoviePage = ({ type = "popular" }) => {
 
   const [nextPage, setNextPage] = useState(1);
   const [query, setQuery] = useState("");
-  const [url, setUrl] = useState(
-    `https://api.themoviedb.org/3/movie/${type}?api_key=3ce49afbabd14f11e4b7097cf42c2ab9&language=en-US&page=${nextPage}`
-  );
+  const [url, setUrl] = useState(tmdbAPI.getMovieList("popular", nextPage));
   const { debounceValue } = useDebounce(query, 1500);
   const handleQueryChange = (e) => {
     setQuery(e.target.value);
   };
   useEffect(() => {
     if (debounceValue) {
-      setUrl(
-        `https://api.themoviedb.org/3/search/movie?api_key=3ce49afbabd14f11e4b7097cf42c2ab9&language=en-US&query=${debounceValue}&page=${nextPage}`
-      );
+      setUrl(tmdbAPI.getMovieSearch(debounceValue, nextPage));
     } else {
-      setUrl(
-        `https://api.themoviedb.org/3/movie/popular?api_key=3ce49afbabd14f11e4b7097cf42c2ab9&language=en-US&page=${nextPage}`
-      );
+      setUrl(tmdbAPI.getMovieList("popular", nextPage));
     }
   }, [debounceValue, nextPage]);
-  console.log(debounceValue);
   const { data, error } = useSWR(url, fetcher);
-  console.log("log ~ MoviePage ~ data", data);
   const loading = !data && !error;
   const movies = data?.results || [];
   useEffect(() => {
