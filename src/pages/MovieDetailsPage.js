@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import { FreeMode, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import useSWR from "swr";
-import MovieCard from "../components/movie/MovieCard";
-import { apiKey, fetcher, tmdbAPI } from "../config";
+import MovieCard from "components/movie/MovieCard";
+import { fetcher, tmdbAPI } from "config";
 // 3ce49afbabd14f11e4b7097cf42c2ab9
 // https://api.themoviedb.org/3/movie/{movie_id}?api_key=3ce49afbabd14f11e4b7097cf42c2ab9&language=en-US
 const MovieDetailsPage = () => {

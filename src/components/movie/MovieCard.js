@@ -9,7 +9,7 @@ const MovieCard = ({ item }) => {
   return (
     <div className="flex flex-col h-full p-3 text-white rounded-lg select-none movie-card bg-slate-800">
       <img
-        src={tmdbAPI.imageOriginal(item.poster_path)}
+        src={tmdbAPI.imageOriginal(poster_path)}
         alt=""
         className="w-full h-[250px] object-cover rounded-lg mb-5"
       />

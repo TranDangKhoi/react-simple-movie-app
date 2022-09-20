@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import useSWR from "swr";
 import ReactPaginate from "react-paginate";
-import MovieCard from "../components/movie/MovieCard";
-import { fetcher, tmdbAPI } from "../config";
-import useDebounce from "../hooks/useDebounce";
-// https://api.themoviedb.org/3/search/movie?api_key=<<api_key>>&language=en-US&query=spiderman&page=1&include_adult=false
+import MovieCard from "components/movie/MovieCard";
+import { fetcher, tmdbAPI } from "config";
+import useDebounce from "hooks/useDebounce";
 const itemsPerPage = 20;
 
 const MoviePage = () => {
@@ -12,7 +11,6 @@ const MoviePage = () => {
   // Here we use item offsets; we could also use page offsets
   // following the API or data you're working with.
   const [itemOffset, setItemOffset] = useState(0);
-
   const [nextPage, setNextPage] = useState(1);
   const [query, setQuery] = useState("");
   const [url, setUrl] = useState(tmdbAPI.getMovieList("popular", nextPage));
