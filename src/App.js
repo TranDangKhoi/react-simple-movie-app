@@ -6,6 +6,7 @@ import Banner from "./components/banner/Banner";
 import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import Main from "./components/layout/Main";
+import MoviePageLoadMore from "pages/MoviePageLoadMore";
 // import Homepage from "";
 // import MoviePage from "";
 // import MovieDetailsPage from "";
@@ -28,7 +29,10 @@ function App() {
                 </>
               }
             ></Route>
-            <Route path="/movies" element={<MoviePage></MoviePage>}></Route>
+            <Route
+              path="/movies"
+              element={<MoviePageLoadMore></MoviePageLoadMore>}
+            ></Route>
             <Route
               path="/movie/:movieId"
               element={<MovieDetailsPage></MovieDetailsPage>}

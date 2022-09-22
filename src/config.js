@@ -1,4 +1,5 @@
-export const fetcher = (...args) => fetch(...args).then((res) => res.json());
+import axios from "axios";
+export const fetcher = (...args) => axios.get(...args).then((res) => res.data);
 export const apiKey = "3ce49afbabd14f11e4b7097cf42c2ab9";
 const tmdbEndpoint = "https://api.themoviedb.org/3/movie";
 const tmdbEndpointSearch = "https://api.themoviedb.org/3/search/movie";

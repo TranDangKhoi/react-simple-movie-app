@@ -1,7 +1,7 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, FreeMode } from "swiper";
-
+import PropTypes from "prop-types";
 import useSWR from "swr";
 import MovieCard from "./MovieCard";
 import { fetcher, tmdbAPI } from "../../config";
@@ -32,6 +32,10 @@ const MovieList = ({ type = "now_playing" }) => {
       </Swiper>
     </div>
   );
+};
+
+MovieList.propTypes = {
+  type: PropTypes.string.isRequired,
 };
 
 export default MovieList;

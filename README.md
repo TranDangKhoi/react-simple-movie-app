@@ -41,3 +41,19 @@ export const tmdbAPI = {
 5. Tìm hiểu về sự khác nhau giữa HashRouter và BrowserRouter
 
 6. Prop-types và Error Boundaries
+
+# .shape() là gì ?
+
+- Là khi 1 prop được truyền vào 1 component mà prop đó lại ở dưới dạng object -> object sẽ có rất nhiều key and value ta phải dùng .shape() để định nghĩa prop type cho từng key trong đó, ví dụ như sau:
+
+```js
+ProductDetails.propTypes = {
+  item: PropTypes.shape({
+    proName: PropTypes.string,
+    proPrice: PropTypes.number,
+    // vân vân
+  }),
+};
+```
+
+- Như bạn thấy ở ví dụ trên thì có 1 prop là item được truyền vào component ProductDetails thì ta sẽ phải định nghĩa từng type một cho properties của prop UwU hê, tôi nói cho tôi hiểu ý mà
