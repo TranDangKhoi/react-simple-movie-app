@@ -7,7 +7,7 @@ Live website: [Khoi's Movie App](https://trandangkhoi.github.io/react-simple-mov
 To run the project:
 
 - Clone or fork
-- Go to terminal type: `npm start`
+- Go to terminal type: `npm install`, wait for it to fnish and then type `npm start`
 - Enjoy!
 
 # Những thứ đã học được sau khi làm project này
