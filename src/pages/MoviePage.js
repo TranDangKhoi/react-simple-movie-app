@@ -5,7 +5,6 @@ import ReactPaginate from "react-paginate";
 import MovieCard from "components/movie/MovieCard";
 import { fetcher, tmdbAPI } from "config";
 import useDebounce from "hooks/useDebounce";
-import Button from "components/button/Button";
 const itemsPerPage = 20;
 
 const MoviePage = () => {
@@ -18,8 +17,14 @@ const MoviePage = () => {
   const [url, setUrl] = useState(tmdbAPI.getMovieList("popular", nextPage));
   const { debounceValue } = useDebounce(query, 1500);
   const handleQueryChange = (e) => {
+    // const newQuery = e.target.value;
+    // setQuery(newQuery);
+    // setSearchParams({
+    //   query: newQuery,
+    // });
     setQuery(e.target.value);
   };
+
   useEffect(() => {
     if (debounceValue) {
       setUrl(tmdbAPI.getMovieSearch(debounceValue, nextPage));
@@ -52,6 +57,7 @@ const MoviePage = () => {
             type="text"
             className="w-full p-4 bg-slate-800 outline-none text-white font-medium text-[20px]"
             placeholder="Search your movies..."
+            value={query}
             onChange={handleQueryChange}
           />
         </div>
@@ -75,7 +81,7 @@ const MoviePage = () => {
       {loading && (
         <div className="mx-auto mt-20 rounded-full border-[5px] border-t-[5px] w-14 h-14 border-primary animate-spin border-t-transparent"></div>
       )}
-      <div className="grid grid-cols-4 gap-10">
+      <div className="grid grid-cols-2 gap-10 lg:grid-cols-4">
         {movies.length > 0 &&
           movies.map((item) => (
             <MovieCard key={item.id} item={item}></MovieCard>
@@ -84,11 +90,11 @@ const MoviePage = () => {
       <div className="mt-10">
         <ReactPaginate
           breakLabel="..."
-          nextLabel="Trang sau >"
+          nextLabel={`${window.innerWidth < 1024 ? ">" : "Trang sau >"}`}
+          previousLabel={`${window.innerWidth < 1024 ? "<" : "< Trang trước "}`}
           onPageChange={handlePageClick}
-          pageRangeDisplayed={6}
+          pageRangeDisplayed={window.innerWidth < 1024 ? 2 : 6}
           pageCount={pageCount}
-          previousLabel="< Trang trước"
           renderOnZeroPageCount={null}
           className="pagination"
         />

@@ -17,7 +17,6 @@ const MovieList = ({ type = "now_playing" }) => {
     <div className="movie-list">
       <Swiper
         freeMode={true}
-        navigation={true}
         grabCursor={true}
         slidesPerView={"auto"}
         spaceBetween={40}

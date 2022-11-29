@@ -57,3 +57,9 @@ ProductDetails.propTypes = {
 ```
 
 - Như bạn thấy ở ví dụ trên thì có 1 prop là item được truyền vào component ProductDetails thì ta sẽ phải định nghĩa từng type một cho properties của prop UwU hê, tôi nói cho tôi hiểu ý mà
+
+# Swiper props explanation
+
+- navigation (bool): bật/tắt mũi tên
+
+- slidesPerView: như tên

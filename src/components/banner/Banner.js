@@ -15,7 +15,7 @@ const Banner = () => {
   console.log(movies);
   return (
     <section className="banner h-[600px] page-container mb-20">
-      <Swiper navigation={true} slidesPerView={"1"} modules={[Navigation]}>
+      <Swiper slidesPerView={"1"} modules={[Navigation]}>
         {movies.length > 0 &&
           movies.map((item) => (
             <SwiperSlide key={item.id}>

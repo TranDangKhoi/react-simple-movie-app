@@ -65,7 +65,7 @@ function MovieMeta({ type = "videos" }) {
         <h1 className="text-center text-white font-medium text-[36px] mb-10">
           Credits
         </h1>
-        <div className="grid grid-cols-4 gap-5 px-10">
+        <div className="grid grid-cols-2 gap-5 px-10 lg:grid-cols-4">
           {cast.length > 0 &&
             cast.slice(0, 8).map((item) => (
               <div key={item.id} className="cast-item">
@@ -89,7 +89,7 @@ function MovieMeta({ type = "videos" }) {
           <h1 className="text-center text-white font-medium text-[36px] mb-10">
             Teaser & Trailers
           </h1>
-          <div className="grid items-center grid-cols-3 gap-10 text-white justify-items-center">
+          <div className="grid items-center grid-cols-1 gap-10 text-white lg:grid-cols-3 justify-items-center">
             {results.slice(0, 6).map((item) => (
               <div key={item.id} className="mb-10">
                 <iframe
@@ -113,7 +113,6 @@ function MovieMeta({ type = "videos" }) {
           <div className="movie-list">
             <Swiper
               freeMode={true}
-              navigation={true}
               grabCursor={true}
               slidesPerView={"auto"}
               spaceBetween={40}
