@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/react-simple-movie-app/static/css/main.33617c3a.css",
-    "main.js": "/react-simple-movie-app/static/js/main.13312a10.js",
-    "static/js/959.862a6759.chunk.js": "/react-simple-movie-app/static/js/959.862a6759.chunk.js",
-    "static/js/493.95e73f84.chunk.js": "/react-simple-movie-app/static/js/493.95e73f84.chunk.js",
-    "static/js/305.2fb57488.chunk.js": "/react-simple-movie-app/static/js/305.2fb57488.chunk.js",
+    "main.css": "/react-simple-movie-app/static/css/main.b5f83e7f.css",
+    "main.js": "/react-simple-movie-app/static/js/main.8d84e1ba.js",
+    "static/js/959.0c3c5932.chunk.js": "/react-simple-movie-app/static/js/959.0c3c5932.chunk.js",
+    "static/js/493.58965ae8.chunk.js": "/react-simple-movie-app/static/js/493.58965ae8.chunk.js",
+    "static/js/305.43022107.chunk.js": "/react-simple-movie-app/static/js/305.43022107.chunk.js",
     "static/js/787.78855739.chunk.js": "/react-simple-movie-app/static/js/787.78855739.chunk.js",
     "index.html": "/react-simple-movie-app/index.html",
-    "main.33617c3a.css.map": "/react-simple-movie-app/static/css/main.33617c3a.css.map",
-    "main.13312a10.js.map": "/react-simple-movie-app/static/js/main.13312a10.js.map",
-    "959.862a6759.chunk.js.map": "/react-simple-movie-app/static/js/959.862a6759.chunk.js.map",
-    "493.95e73f84.chunk.js.map": "/react-simple-movie-app/static/js/493.95e73f84.chunk.js.map",
-    "305.2fb57488.chunk.js.map": "/react-simple-movie-app/static/js/305.2fb57488.chunk.js.map",
+    "main.b5f83e7f.css.map": "/react-simple-movie-app/static/css/main.b5f83e7f.css.map",
+    "main.8d84e1ba.js.map": "/react-simple-movie-app/static/js/main.8d84e1ba.js.map",
+    "959.0c3c5932.chunk.js.map": "/react-simple-movie-app/static/js/959.0c3c5932.chunk.js.map",
+    "493.58965ae8.chunk.js.map": "/react-simple-movie-app/static/js/493.58965ae8.chunk.js.map",
+    "305.43022107.chunk.js.map": "/react-simple-movie-app/static/js/305.43022107.chunk.js.map",
     "787.78855739.chunk.js.map": "/react-simple-movie-app/static/js/787.78855739.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.33617c3a.css",
-    "static/js/main.13312a10.js"
+    "static/css/main.b5f83e7f.css",
+    "static/js/main.8d84e1ba.js"
   ]
 }
