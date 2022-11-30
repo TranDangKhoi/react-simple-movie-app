@@ -30,6 +30,10 @@
       height: 25px !important;
     }
   }
+
+  .iframe {
+    @apply lg:w-full lg:h-full w-[327px] h-[250px];
+  }
 }
 
 // pagination
