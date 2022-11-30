@@ -12,7 +12,6 @@ const Banner = () => {
     fetcher
   );
   const movies = data?.results || [];
-  console.log(movies);
   return (
     <section className="banner h-[600px] page-container mb-20">
       <Swiper slidesPerView={"1"} modules={[Navigation]}>

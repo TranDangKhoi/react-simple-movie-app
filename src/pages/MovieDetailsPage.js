@@ -58,7 +58,6 @@ function MovieMeta({ type = "videos" }) {
   if (!data) return null;
   if (type === "credits") {
     const { cast } = data;
-    console.log("log ~ MovieMeta ~ cast", cast);
     if (!cast || cast.length < 0) return null;
     return (
       <div className="text-white">
