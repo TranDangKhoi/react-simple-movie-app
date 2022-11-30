@@ -22,6 +22,18 @@
   .banner .swiper {
     @apply h-full;
   }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    @media screen and (max-width: 1023.98px) {
+      width: 25px !important;
+      height: 25px !important;
+    }
+  }
+
+  iframe {
+    @apply lg:w-full lg:h-full w-[327px] h-[250px];
+  }
 }
 
 // pagination
