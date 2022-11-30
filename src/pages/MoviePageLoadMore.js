@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import useSWR from "swr";
 import useSWRInfinite from "swr/infinite";
+import Button from "../components/button/Button";
+import MovieCard from "../components/movie/MovieCard";
+import { fetcher, tmdbAPI } from "../config";
+import useDebounce from "../hooks/useDebounce";
 // import ReactPaginate from "react-paginate";
-import MovieCard from "components/movie/MovieCard";
-import { fetcher, tmdbAPI } from "config";
-import useDebounce from "hooks/useDebounce";
-import Button from "components/button/Button";
 const itemsPerPage = 20;
 
 const MoviePageLoadMore = () => {
